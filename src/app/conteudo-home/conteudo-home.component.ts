@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { IVendedor } from '../models/vendedor';
 
@@ -9,12 +9,15 @@ import { IVendedor } from '../models/vendedor';
 })
 export class ConteudoHomeComponent implements OnInit {
 
+  @Output() codigoVendedorSelecionado: string;
+  @Output() vendedorParaEdicao: IVendedor;
+
   todos = 'TODOS';
-  vendedorParaEdicao: IVendedor;
   arrayVendedores: IVendedor[] = [ // será substituido por serviço
     {cdvend: '2345-1244-agkk1', dsnome: 'test1', cdtab: 10, dtnasc: '27/08/2000'},
     {cdvend: '2515-af33-ag45b', dsnome: 'test2', cdtab: 30, dtnasc: '27/08/1980'},
   ];
+
 
   constructor() { }
 
@@ -31,12 +34,16 @@ export class ConteudoHomeComponent implements OnInit {
 
   mudouVendedor(vendedorSelecionado) {
     if (vendedorSelecionado === this.todos) {
-      console.log('servico que busca todos clientes da base' + vendedorSelecionado);
+      this.codigoVendedorSelecionado = this.todos;
+      console.log(this.codigoVendedorSelecionado);
     } else {
-      this.vendedorParaEdicao = vendedorSelecionado; // caso de uso edição
+      // caso de uso edição listagem de cliente - exportar esse dado
+      this.codigoVendedorSelecionado = vendedorSelecionado.cdvend;
+      console.log(this.codigoVendedorSelecionado);
+
+      // posso passar o vendedor diretamente para edição ou só o código
+      this.vendedorParaEdicao = vendedorSelecionado;
       console.log(this.vendedorParaEdicao);
-      // passar nome-id do vendedor para componente lista
-      console.log(this.vendedorParaEdicao.dsnome); // passar dado para lista-cliente
     }
   }
 }

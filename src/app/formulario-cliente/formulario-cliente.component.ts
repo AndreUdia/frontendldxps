@@ -25,7 +25,7 @@ export class FormularioClienteComponent implements OnInit {
       nome: ['', Validators.required]
     });
     this.tipoPessoaFormGroup = this.formBuilder.group({
-      tipo: ['', Validators.required]
+      tipo: ['PF', Validators.required]
     });
     this.vendedorFormGroup = this.formBuilder.group({
       vendedor: ['']

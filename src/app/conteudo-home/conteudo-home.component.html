@@ -9,7 +9,7 @@
         <mat-select [formControl]="vendedorControl" (selectionChange)="mudouVendedor($event.value)">
           <mat-option value="TODOS">TODOS</mat-option>
           <mat-option *ngFor="let vendedor of vendedores" [value]="vendedor" #vendedor>
-            {{ vendedor.dsnome }}
+            {{ vendedor.dsnome | uppercase}}
           </mat-option>
         </mat-select>
         <mat-hint> Seleção Vendedores</mat-hint>
