@@ -1,0 +1,49 @@
+<mat-horizontal-stepper #stepper>
+  <mat-step [stepControl]="nomeFormGroup">
+    <form [formGroup]="nomeFormGroup">
+      <ng-template matStepLabel>Preencha o Nome</ng-template>
+      <mat-form-field>
+        <mat-label>Nome Vendedor</mat-label>
+        <input matInput placeholder="Nome e Sobrenome" formControlName="nome" required maxlength="50">
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperNext color="accent">Próximo</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="tabelaFormGroup">
+    <form [formGroup]="tabelaFormGroup">
+      <ng-template matStepLabel>Preencha Tabela de Preço Padrão</ng-template>
+      <mat-form-field>
+        <mat-label>Tabela de Preços</mat-label>
+        <input matInput type="number" formControlName="tabela" placeholder="numeros"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Anterior</button>
+        <button mat-raised-button matStepperNext color="accent">Próximo</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="dataNascFormGroup">
+    <form [formGroup]="dataNascFormGroup">
+      <ng-template matStepLabel>Data de Nascimento</ng-template>
+      <mat-form-field>
+        <mat-label>Escolha uma data</mat-label>
+        <input matInput type="date" formControlName="dataNascimento">
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Anterior</button>
+        <button mat-raised-button matStepperNext color="accent">Próximo</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Fim</ng-template>
+    <div>
+      <button mat-raised-button (click)="stepper.reset()">Cancelar</button>
+      <button mat-raised-button (click)="salvarVendedor()" color="primary">Confirmar</button>
+
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

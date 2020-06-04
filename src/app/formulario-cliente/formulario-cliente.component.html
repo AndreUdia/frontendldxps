@@ -1,0 +1,68 @@
+<mat-horizontal-stepper #stepper>
+  <mat-step [stepControl]="nomeFormGroup">
+    <form [formGroup]="nomeFormGroup">
+      <ng-template matStepLabel>Preencha o Nome</ng-template>
+      <mat-form-field>
+        <mat-label>Nome Cliente</mat-label>
+        <input matInput placeholder="Nome e Sobrenome" formControlName="nome" required maxlength="50">
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperNext color="accent">Próximo</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="tipoPessoaFormGroup">
+    <form [formGroup]="tipoPessoaFormGroup">
+      <ng-template matStepLabel>Tipo Cliente</ng-template>
+      <mat-form-field>
+        <mat-select formControlName="tipo" name="tipo" required>
+          <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+            {{tipo.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Anterior</button>
+        <button mat-raised-button matStepperNext color="accent">Próximo</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="vendedorFormGroup">
+    <form [formGroup]="vendedorFormGroup">
+      <ng-template matStepLabel>Escolha um vendedor</ng-template>
+      <mat-form-field>
+        <mat-label>Vendedores</mat-label>
+        <mat-select (selectionChange)="mudouVendedor($event.value)" formControlName="vendedor" required>
+          <mat-option value="--"></mat-option>
+          <mat-option *ngFor="let vendedor of vendedores" [value]="vendedor" #vendedor>
+            {{vendedor.nome}}
+          </mat-option>
+        </mat-select>
+        <mat-hint> Seleção Vendedores</mat-hint>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Anterior</button>
+        <button mat-raised-button matStepperNext color="accent">Próximo</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="limiteFormGroup">
+    <form [formGroup]="limiteFormGroup">
+      <ng-template matStepLabel>Limite de Crédito</ng-template>
+      <mat-form-field>
+        <mat-label>Limite</mat-label>
+        <input matInput type="number" formControlName="limite" placeholder="Limite de Crédio" required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperNext color="accent">Próximo</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Fim</ng-template>
+    <div>
+      <button mat-raised-button (click)="stepper.reset()">Cancelar</button>
+      <button mat-raised-button (click)="salvarCliente()" color="primary">Confirmar</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

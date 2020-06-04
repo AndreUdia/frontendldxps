@@ -1,0 +1,22 @@
+<div>
+  <mat-card>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Vendedores</mat-label>
+        <mat-select [formControl]="animalControl" (selectionChange)="mudouVendedor($event.value)">
+          <mat-option value="TODOS">TODOS</mat-option>
+          <mat-option *ngFor="let animal of animals" [value]="animal" #vendedor>
+            {{animal.name}}
+          </mat-option>
+        </mat-select>
+        <mat-hint> Seleção Vendedores</mat-hint>
+      </mat-form-field>
+      <div class="edicao">
+        <button mat-raised-button color="accent" (click)="editarVendedor()">Editar Vendedor</button>
+        <mat-icon>edit</mat-icon>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-divider [vertical]="true"></mat-divider>
+  <app-lista-clientes></app-lista-clientes>
+</div>
