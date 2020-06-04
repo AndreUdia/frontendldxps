@@ -1,4 +1,8 @@
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-card>
+  <mat-card-title>Lista de Clientes</mat-card-title>
+</mat-card>
+
+<mat-table [dataSource]="dataSource" *ngIf="dataSource != []" class="mat-elevation-z8">
 
   <!-- Coluna Nome -->
   <ng-container matColumnDef="nome">
@@ -19,7 +23,9 @@
   </ng-container>
 
   <ng-container matColumnDef="selected">
-    <mat-header-cell *matHeaderCellDef>Selecione Cliente Para Edição </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>
+      Selecione Cliente Para Edição
+    </mat-header-cell>
     <mat-cell *matCellDef="let element">
       <mat-radio-button #radio></mat-radio-button>
       <button mat-raised-button *ngIf="checkRadio(radio)" color="accent" (click)="editarCliente(element)">Editar Cliente</button>

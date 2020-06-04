@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-
-interface Animal { // será substituido por serviço
-  name: string;
-  sound: string;
-}
+import { IVendedor } from '../models/vendedor';
 
 @Component({
   selector: 'app-conteudo-home',
@@ -14,16 +10,17 @@ interface Animal { // será substituido por serviço
 export class ConteudoHomeComponent implements OnInit {
 
   todos = 'TODOS';
-  vendedorParaEdicao = [];
+  vendedorParaEdicao: IVendedor;
+  arrayVendedores: IVendedor[] = [ // será substituido por serviço
+    {cdvend: '2345-1244-agkk1', dsnome: 'test1', cdtab: 10, dtnasc: '27/08/2000'},
+    {cdvend: '2515-af33-ag45b', dsnome: 'test2', cdtab: 30, dtnasc: '27/08/1980'},
+  ];
 
   constructor() { }
 
-  animalControl = new FormControl('', Validators.required);
+  vendedorControl = new FormControl('', Validators.required);
   selectFormControl = new FormControl('', Validators.required);
-  animals: Animal[] = [ // será substituido por serviço
-    {name: 'tst', sound: 'test!'},
-    {name: 'tst', sound: 'test!'},
-  ];
+  vendedores: IVendedor[] = this.arrayVendedores;
 
   ngOnInit(): void {
   }
@@ -33,7 +30,13 @@ export class ConteudoHomeComponent implements OnInit {
   }
 
   mudouVendedor(vendedorSelecionado) {
-    this.vendedorParaEdicao = vendedorSelecionado;
-    console.log(this.vendedorParaEdicao);
+    if (vendedorSelecionado === this.todos) {
+      console.log('servico que busca todos clientes da base' + vendedorSelecionado);
+    } else {
+      this.vendedorParaEdicao = vendedorSelecionado; // caso de uso edição
+      console.log(this.vendedorParaEdicao);
+      // passar nome-id do vendedor para componente lista
+      console.log(this.vendedorParaEdicao.dsnome); // passar dado para lista-cliente
+    }
   }
 }

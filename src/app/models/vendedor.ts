@@ -2,5 +2,5 @@ export interface IVendedor {
   cdvend: any;
   dsnome: string;
   cdtab: number;
-  dtnasc: Date;
+  dtnasc: string;  // refatorar para tipo Date
 }

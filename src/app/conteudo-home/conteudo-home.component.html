@@ -1,12 +1,15 @@
 <div>
   <mat-card>
+    <mat-card-title>Vendedores</mat-card-title>
+  </mat-card>
+  <mat-card>
     <mat-card-content>
       <mat-form-field>
-        <mat-label>Vendedores</mat-label>
-        <mat-select [formControl]="animalControl" (selectionChange)="mudouVendedor($event.value)">
+        <mat-label>vendedor</mat-label>
+        <mat-select [formControl]="vendedorControl" (selectionChange)="mudouVendedor($event.value)">
           <mat-option value="TODOS">TODOS</mat-option>
-          <mat-option *ngFor="let animal of animals" [value]="animal" #vendedor>
-            {{animal.name}}
+          <mat-option *ngFor="let vendedor of vendedores" [value]="vendedor" #vendedor>
+            {{ vendedor.dsnome }}
           </mat-option>
         </mat-select>
         <mat-hint> Seleção Vendedores</mat-hint>
