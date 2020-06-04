@@ -5,10 +5,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
+import { ListaClientesComponent } from './conteudo-home/lista-clientes/lista-clientes.component';
 import { ConteudoHomeComponent } from './conteudo-home/conteudo-home.component';
-import { FormularioClienteComponent } from './formulario-cliente/formulario-cliente.component';
-import { FormularioVendedorComponent } from './formulario-vendedor/formulario-vendedor.component';
+import { FormularioClienteComponent } from './conteudo-home/formulario-cliente/formulario-cliente.component';
+import { FormularioVendedorComponent } from './conteudo-home/formulario-vendedor/formulario-vendedor.component';
 
 @NgModule({
   declarations: [

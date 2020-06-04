@@ -9,7 +9,7 @@ import { IVendedor } from '../models/vendedor';
 })
 export class ConteudoHomeComponent implements OnInit {
 
-  @Output() codigoVendedorSelecionado: string;
+  codigoVendedorSelecionado = 'TODOS';
   @Output() vendedorParaEdicao: IVendedor;
 
   todos = 'TODOS';
@@ -29,21 +29,20 @@ export class ConteudoHomeComponent implements OnInit {
   }
 
   editarVendedor() {
-    console.log(this.vendedorParaEdicao);
+    // console.log(this.vendedorParaEdicao);
   }
 
   mudouVendedor(vendedorSelecionado) {
     if (vendedorSelecionado === this.todos) {
-      this.codigoVendedorSelecionado = this.todos;
-      console.log(this.codigoVendedorSelecionado);
+      // console.log(this.codigoVendedorSelecionado);
     } else {
       // caso de uso edição listagem de cliente - exportar esse dado
       this.codigoVendedorSelecionado = vendedorSelecionado.cdvend;
-      console.log(this.codigoVendedorSelecionado);
+      // console.log(this.codigoVendedorSelecionado);
 
       // posso passar o vendedor diretamente para edição ou só o código
       this.vendedorParaEdicao = vendedorSelecionado;
-      console.log(this.vendedorParaEdicao);
+      // console.log(this.vendedorParaEdicao);
     }
   }
 }
