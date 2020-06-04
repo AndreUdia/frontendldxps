@@ -1,25 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
-export interface PeriodicElement { // será substituido por serviço
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [ // será substituido por serviço
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
-
+import { ICliente } from './../models/cliente';
+import { Component, OnInit, Input } from '@angular/core';
 
 
 @Component({
@@ -29,8 +9,14 @@ const ELEMENT_DATA: PeriodicElement[] = [ // será substituido por serviço
 })
 export class ListaClientesComponent implements OnInit {
 
+CLIENTE_DATA: ICliente[] = [ // será substituido por serviço - filtrar todos ou vendedor
+  {cdcl: 'gagk-gae3', dsnome: 'beutrano', idtipo: 'PF', cdvend: 'gagk-3kg6-gleg', dslim: 1500.00},
+  {cdcl: 'gagk-gae3', dsnome: 'fulano', idtipo: 'PJ', cdvend: 'gagk-3kg6-gleg', dslim: 2300.00},
+  {cdcl: 'gagk-gae3', dsnome: 'ciclano', idtipo: 'PF', cdvend: 'liag-0age-979d', dslim: 3290.00},
+];
+
   displayedColumns: string[] = ['nome', 'tipo', 'limite', 'selected']; // será substituido por serviço
-  dataSource = ELEMENT_DATA;
+  dataSource = this.CLIENTE_DATA;
 
   constructor() { }
 
@@ -46,4 +32,5 @@ export class ListaClientesComponent implements OnInit {
     console.log(cliente);
     // dados do clientes vindo no clique -- será substituido por serviço
   }
+
 }

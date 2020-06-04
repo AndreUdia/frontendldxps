@@ -7,19 +7,19 @@
   <!-- Coluna Nome -->
   <ng-container matColumnDef="nome">
     <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.dsnome | uppercase}} </mat-cell>
   </ng-container>
 
   <!-- Coluna Tipo -->
   <ng-container matColumnDef="tipo">
     <mat-header-cell *matHeaderCellDef> Tipo de Cliente </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.idtipo}} </mat-cell>
   </ng-container>
 
   <!-- Coluna Limite -->
   <ng-container matColumnDef="limite">
     <mat-header-cell *matHeaderCellDef> Limite de Crédito</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.dslim}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="selected">
