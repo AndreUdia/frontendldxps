@@ -1,3 +1,4 @@
+import { ClienteService } from './../../services/cliente.service';
 import { ICliente } from '../../models/cliente';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -16,11 +17,15 @@ export class ListaClientesComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'tipo', 'limite', 'selected']; // será substituido por serviço
   dataSource = [];
 
-  constructor() { }
+  constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
-    this.dumpData();
+    this.listarClientes();
     this.dataSource = this.CLIENTE_DATA;
+  }
+
+  listarClientes() {
+    this.clienteService.getClientes().subscribe(data => this.dataSource = data);
   }
 
   // função auxiliar para exibir ou não botão
