@@ -1,3 +1,4 @@
+import { VendedorService } from './../services/vendedor.service';
 import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { IVendedor } from '../models/vendedor';
@@ -9,40 +10,39 @@ import { IVendedor } from '../models/vendedor';
 })
 export class ConteudoHomeComponent implements OnInit {
 
-  codigoVendedorSelecionado = 'TODOS';
-  @Output() vendedorParaEdicao: IVendedor;
+  codigoVendedorSelecionado: boolean; // resolve a questão de todos os clientes
+  vendedorParaEdicao: IVendedor;
 
   todos = 'TODOS';
-  arrayVendedores: IVendedor[] = [ // será substituido por serviço
-    {cdvend: '2345-1244-agkk1', dsnome: 'test1', cdtab: 10, dtnasc: '27/08/2000'},
-    {cdvend: '2515-af33-ag45b', dsnome: 'test2', cdtab: 30, dtnasc: '27/08/1980'},
-  ];
 
-
-  constructor() { }
+  constructor(private vendedorService: VendedorService) { }
 
   vendedorControl = new FormControl('', Validators.required);
   selectFormControl = new FormControl('', Validators.required);
-  vendedores: IVendedor[] = this.arrayVendedores;
+  vendedores: IVendedor[];
 
   ngOnInit(): void {
+    this.codigoVendedorSelecionado = false;
+    this.listarVendedores();
+  }
+
+  listarVendedores(){
+    this.vendedorService.getVendedores().subscribe(data => this.vendedores = data);
   }
 
   editarVendedor() {
-    // console.log(this.vendedorParaEdicao);
+    console.log(this.vendedorParaEdicao);
   }
 
   mudouVendedor(vendedorSelecionado) {
     if (vendedorSelecionado === this.todos) {
       // console.log(this.codigoVendedorSelecionado);
+      this.codigoVendedorSelecionado = true;
     } else {
-      // caso de uso edição listagem de cliente - exportar esse dado
-      this.codigoVendedorSelecionado = vendedorSelecionado.cdvend;
-      // console.log(this.codigoVendedorSelecionado);
+      this.codigoVendedorSelecionado = true;
 
       // posso passar o vendedor diretamente para edição ou só o código
       this.vendedorParaEdicao = vendedorSelecionado;
-      // console.log(this.vendedorParaEdicao);
     }
   }
 }

@@ -2,7 +2,7 @@
   <mat-card-title>Lista de Clientes</mat-card-title>
 </mat-card>
 
-<mat-table [dataSource]="dataSource" *ngIf="dataSource != []" class="mat-elevation-z8">
+<mat-table [dataSource]="dataSource" *ngIf="this.dataSource !== [] && codigoVendedorSelecionado" class="mat-elevation-z8">
 
   <!-- Coluna Nome -->
   <ng-container matColumnDef="nome">
