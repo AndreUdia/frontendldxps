@@ -40,8 +40,8 @@ export class VendedorService {
   }
 
   // Alterar dados cliente
-  putVendedor(data: any, cdvend: string): Observable<any> {
-    const url = `${this.api}vendedores/${cdvend}`;
+  putVendedor(data: any): Observable<any> {
+    const url = `${this.api}vendedores/${data.cdvend}`;
     return this.http.put<any>(url, data , this.httpOptions);
   }
 

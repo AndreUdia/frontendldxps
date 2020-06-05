@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Edite os Campos e click em confirmar</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="data.dsnome">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Código Tabela</mat-label>
+    <input matInput [(ngModel)]="data.cdtab">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Data Nascimento</mat-label>
+    <input matInput [(ngModel)]="data.dtnasc">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial (click)= alterarDados()>Confirmar</button>
+  <button mat-raised-button (click)="excluirCliente(data.cdvend)">Excluir Cliente</button>
+</div>

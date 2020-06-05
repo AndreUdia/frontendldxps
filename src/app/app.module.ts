@@ -10,6 +10,8 @@ import { ListaClientesComponent } from './conteudo-home/lista-clientes/lista-cli
 import { ConteudoHomeComponent } from './conteudo-home/conteudo-home.component';
 import { FormularioClienteComponent } from './conteudo-home/formulario-cliente/formulario-cliente.component';
 import { FormularioVendedorComponent } from './conteudo-home/formulario-vendedor/formulario-vendedor.component';
+import { ModalClienteComponent } from './modal-cliente/modal-cliente.component';
+import { ModalVendedorComponent } from './modal-vendedor/modal-vendedor.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { FormularioVendedorComponent } from './conteudo-home/formulario-vendedor
     ListaClientesComponent,
     ConteudoHomeComponent,
     FormularioClienteComponent,
-    FormularioVendedorComponent
+    FormularioVendedorComponent,
+    ModalClienteComponent,
+    ModalVendedorComponent
   ],
   imports: [
     BrowserModule,

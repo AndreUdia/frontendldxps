@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Edite os Campos e click em confirmar</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="data.dsnome">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Tipo</mat-label>
+    <input matInput [(ngModel)]="data.idtipo">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Vendedor</mat-label>
+    <input matInput [(ngModel)]="data.cdvend">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Limite</mat-label>
+    <input matInput [(ngModel)]="data.dslim">
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial (click)= alterarDados()>Confirmar</button>
+  <button mat-raised-button (click)="excluirCliente(data.cdcl)">Excluir Cliente</button>
+</div>

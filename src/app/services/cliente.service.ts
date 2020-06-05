@@ -53,8 +53,8 @@ export class ClienteService {
   }
 
   // Alterar dados cliente
-  putCliente(data: any, cdcl: string): Observable<any> {
-    const url = `${this.api}clientes/${cdcl}`;
+  putCliente(data: any): Observable<any> {
+    const url = `${this.api}clientes/${data.cdcl}`;
     return this.http.put<any>(url, data , this.httpOptions)
       .pipe(
         catchError(this.handleError)
