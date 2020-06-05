@@ -1,5 +1,7 @@
+import { VendedorService } from './../../services/vendedor.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-formulario-vendedor',
@@ -11,7 +13,11 @@ export class FormularioVendedorComponent implements OnInit {
   tabelaFormGroup: FormGroup;
   dataNascFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+          private snackBar: MatSnackBar,
+          private formBuilder: FormBuilder,
+          private vendedorService: VendedorService,
+        ) { }
 
   ngOnInit() {
     this.nomeFormGroup = this.formBuilder.group({
@@ -26,10 +32,27 @@ export class FormularioVendedorComponent implements OnInit {
   }
 
   salvarVendedor() {
-    console.log(this.nomeFormGroup.value.nome);
-    console.log(this.tabelaFormGroup.value.tabela);
-    console.log(this.dataNascFormGroup.value.dataNascimento);
-    // Dados vindo do formulário, só salvar via serviço
+    const vendedorParaSalvar = {
+      dsnome: this.nomeFormGroup.value.nome,
+      cdtab: this.tabelaFormGroup.value.tabela,
+      dtnasc: this.dataNascFormGroup.value.dataNascimento,
+    };
+
+    if (vendedorParaSalvar.dsnome === '' || vendedorParaSalvar.cdtab === '') {
+      this.snackBar.open(`Gentileza preencher o Nome e Tabela de Preços`, 'Fechar', { duration: 3000});
+    }
+
+    this.vendedorService.postVendedor(vendedorParaSalvar)
+      .subscribe(resp => {
+        this.limparCampos(),
+        this.snackBar.open(`Cadastro ${resp.body.dsnome} Salvo com Sucesso`, 'Fechar', { duration: 3000});
+      });
+  }
+
+  limparCampos() {
+    this.nomeFormGroup.reset();
+    this.tabelaFormGroup.reset();
+    this.dataNascFormGroup.reset();
   }
 
 }

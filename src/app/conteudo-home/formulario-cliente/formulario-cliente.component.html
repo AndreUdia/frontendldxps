@@ -35,10 +35,9 @@
         <mat-select (selectionChange)="mudouVendedor($event.value)" formControlName="vendedor" required>
           <mat-option value="--"></mat-option>
           <mat-option *ngFor="let vendedor of vendedores" [value]="vendedor" #vendedor>
-            {{vendedor.nome}}
+            {{vendedor.dsnome}}
           </mat-option>
         </mat-select>
-        <mat-hint> Seleção Vendedores</mat-hint>
       </mat-form-field>
       <div>
         <button mat-raised-button matStepperPrevious>Anterior</button>

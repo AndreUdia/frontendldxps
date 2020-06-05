@@ -1,7 +1,8 @@
 import { VendedorService } from './../services/vendedor.service';
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { IVendedor } from '../models/vendedor';
+import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
 
 @Component({
   selector: 'app-conteudo-home',
@@ -9,8 +10,10 @@ import { IVendedor } from '../models/vendedor';
   styleUrls: ['./conteudo-home.component.css']
 })
 export class ConteudoHomeComponent implements OnInit {
+  @ViewChild(ListaClientesComponent, { static: false })
+  private childListaCliente: ListaClientesComponent;
 
-  codigoVendedorSelecionado: boolean; // resolve a questão de todos os clientes
+  codigoVendedorSelecionado: boolean;
   vendedorParaEdicao: IVendedor;
 
   todos = 'TODOS';
@@ -39,6 +42,7 @@ export class ConteudoHomeComponent implements OnInit {
       // console.log(this.codigoVendedorSelecionado);
       this.codigoVendedorSelecionado = true;
     } else {
+      this.childListaCliente.listarClientesPorVendedor(vendedorSelecionado.cdvend);
       this.codigoVendedorSelecionado = true;
 
       // posso passar o vendedor diretamente para edição ou só o código

@@ -1,5 +1,4 @@
 import { ClienteService } from './../../services/cliente.service';
-import { ICliente } from '../../models/cliente';
 import { Component, OnInit, Input } from '@angular/core';
 
 
@@ -23,6 +22,10 @@ export class ListaClientesComponent implements OnInit {
 
   listarClientes() {
     this.clienteService.getClientes().subscribe(data => this.dataSource = data);
+  }
+
+  listarClientesPorVendedor(cdvend: string) {
+    this.clienteService.getClientesDoVendedor(cdvend).subscribe(data => this.dataSource = data);
   }
 
   // função auxiliar para exibir ou não botão

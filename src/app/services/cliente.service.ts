@@ -45,7 +45,7 @@ export class ClienteService {
 
   // Salvar cliente no Back/Banco
   postCliente(data: any): Observable<any> {
-    const url = `${this.api}clientes`;
+    const url = `${this.api}vendedor/${data.cdvend}/clientes`;
     return this.http.post<any>(url, data , this.httpOptions)
       .pipe(
         catchError(this.handleError)
