@@ -37,7 +37,7 @@ export class ModalVendedorComponent implements OnInit {
     this.vendedorService.putVendedor(estrutura).subscribe();
   }
 
-  excluirCliente(cdvend: string) {
+  excluirVendedor(cdvend: string) {
     this.vendedorService.deleteVendedor(cdvend).subscribe();
   }
 

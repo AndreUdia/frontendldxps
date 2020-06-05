@@ -33,6 +33,15 @@ export class VendedorService {
       );
   }
 
+  // retorna um vendedor
+  getVendedoresPorCodigo(cdvend): Observable<IVendedor> {
+    const url = `${this.api}vendedores/${cdvend}`;
+    return this.http.get<IVendedor>(url)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   // Salvar vendedor no Back/Banco
   postVendedor(data: any): Observable<any> {
     const url = `${this.api}vendedores`;

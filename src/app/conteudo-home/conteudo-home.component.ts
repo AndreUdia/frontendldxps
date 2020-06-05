@@ -1,8 +1,11 @@
+import { IVendedor } from './../models/vendedor';
+import { ModalVendedorComponent } from './../modal-vendedor/modal-vendedor.component';
 import { VendedorService } from './../services/vendedor.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { IVendedor } from '../models/vendedor';
 import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-conteudo-home',
@@ -18,7 +21,10 @@ export class ConteudoHomeComponent implements OnInit {
 
   todos = 'TODOS';
 
-  constructor(private vendedorService: VendedorService) { }
+  constructor(
+    private vendedorService: VendedorService,
+    public dialog: MatDialog,
+  ) { }
 
   vendedorControl = new FormControl('', Validators.required);
   selectFormControl = new FormControl('', Validators.required);
@@ -33,20 +39,32 @@ export class ConteudoHomeComponent implements OnInit {
     this.vendedorService.getVendedores().subscribe(data => this.vendedores = data);
   }
 
-  editarVendedor() {
-    console.log(this.vendedorParaEdicao);
-  }
-
   mudouVendedor(vendedorSelecionado) {
     if (vendedorSelecionado === this.todos) {
-      // console.log(this.codigoVendedorSelecionado);
       this.codigoVendedorSelecionado = true;
     } else {
       this.childListaCliente.listarClientesPorVendedor(vendedorSelecionado.cdvend);
       this.codigoVendedorSelecionado = true;
-
-      // posso passar o vendedor diretamente para edição ou só o código
       this.vendedorParaEdicao = vendedorSelecionado;
     }
+  }
+
+  // logica modal dialogo edição vendedor - Faltou alguns detalhes
+  editarVendedor() {
+    let vendedor: IVendedor;
+    this.vendedorService.getVendedoresPorCodigo(this.codigoVendedorSelecionado)
+      .subscribe(res => vendedor = res);
+    const dialogRef = this.dialog.open(ModalVendedorComponent, {
+      width: '300px',
+      data: {
+        // cdvend: vendedor.cdvend,
+        // dsnome: vendedor.dsnome,
+        // cdtab: vendedor.cdtab,
+        // dsnasc: vendedor.dtnasc
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }
